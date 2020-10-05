@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/cardview_light_background">
+
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/toolbar" />
+
+    <ImageView
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/app_name" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/photo_button"
+        android:text="take photo"
+        android:onClick="takePhoto"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|right"
+        app:fabSize="auto"
+        app:rippleColor="@android:color/holo_orange_light"
+        app:backgroundTint="#6d4a3b"
+        android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:tint="@color/cardview_light_background"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/gallery_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="16dp"
+        android:onClick="uploadPhoto"
+        app:fabSize="auto"
+        app:rippleColor="@android:color/holo_orange_light"
+        android:text="gallery"
+        app:backgroundTint="#6d4a3b"
+        android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:tint="@color/cardview_light_background"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
