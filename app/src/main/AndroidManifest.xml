@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/leaf1"
+        android:icon="@mipmap/huicon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/huicon"
         android:supportsRtl="true"
