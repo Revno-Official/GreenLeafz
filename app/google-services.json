@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:495891164510:android:727adf39f10af9ffc3f3cf",
+        "mobilesdk_app_id": "1:495891164510:android:45fc1baef4be7e2ac3f3cf",
         "android_client_info": {
-          "package_name": "com.revno.GreenLeafz"
+          "package_name": "com.revno.greenleafz"
         }
       },
       "oauth_client": [
