@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "495891164510",
+    "firebase_url": "https://greenleafz-435f4.firebaseio.com",
+    "project_id": "greenleafz-435f4",
+    "storage_bucket": "greenleafz-435f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495891164510:android:727adf39f10af9ffc3f3cf",
+        "android_client_info": {
+          "package_name": "com.revno.GreenLeafz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495891164510-87ah3ebdd5npk8bd6ejiudvusrat2mp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLkectaca-CsBLAw9rDOOINEQwMn53iNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495891164510-87ah3ebdd5npk8bd6ejiudvusrat2mp6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
