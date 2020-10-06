@@ -1,5 +1,6 @@
 package com.revno.greenleafz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,8 +20,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
+import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
+import com.google.firebase.ml.custom.FirebaseCustomRemoteModel;
+import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
+
+import org.tensorflow.lite.Interpreter;
+
+import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +55,31 @@ public class MainActivity extends AppCompatActivity {
         title = toolbar.findViewById(R.id.title);
         toolbar.setTitle("");
 
+        FirebaseCustomRemoteModel remoteModel =
+                new FirebaseCustomRemoteModel.Builder("GreenLeafz_MODEL").build();
+        FirebaseModelDownloadConditions conditions = new FirebaseModelDownloadConditions.Builder()
+                .requireWifi()
+                .build();
+        FirebaseModelManager.getInstance().download(remoteModel, conditions)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void v) {
+                        // Download complete. Depending on your app, you could enable
+                        // the ML feature, or switch from the local model to the remote
+                        // model, etc.
+                    }
+                });
+
+        FirebaseModelManager.getInstance().getLatestModelFile(remoteModel)
+                .addOnCompleteListener(new OnCompleteListener<File>() {
+                    @Override
+                    public void onComplete(@NonNull Task<File> task) {
+                        File modelFile = task.getResult();
+                        if (modelFile != null) {
+                            Interpreter interpreter = new Interpreter(modelFile);
+                        }
+                    }
+                });
 
         new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
