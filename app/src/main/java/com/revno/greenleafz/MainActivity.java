@@ -114,11 +114,13 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
     public void toHome(View view){
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
+        if (!this.getClass().getSimpleName().toLowerCase().startsWith("main")){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+        }
     }
     public void toTutorial(View view){
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(),TutorialActivity.class);
         startActivity(intent);
     }
     public void toHistory(View view){

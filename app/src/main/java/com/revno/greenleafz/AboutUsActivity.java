@@ -2,6 +2,7 @@ package com.revno.greenleafz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -30,10 +31,27 @@ public class AboutUsActivity extends AppCompatActivity {
                 .withMenuLayout(R.layout.menu_left_drawer)
                 .inject();
     }
+    public void toHome(View view){
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+    }
+    public void toTutorial(View view){
+        Intent intent = new Intent(getApplicationContext(),TutorialActivity.class);
+        startActivity(intent);
+    }
+    public void toHistory(View view){
+        Intent intent = new Intent(getApplicationContext(),HistoryActivity.class);
+        startActivity(intent);
+    }
+    public void toAbout(View view){
+        if (!this.getClass().getSimpleName().toLowerCase().startsWith("about")) {
+            Intent intent = new Intent(getApplicationContext(),AboutUsActivity.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
+        this.finish();
     }
 }
