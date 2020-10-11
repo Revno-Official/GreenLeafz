@@ -23,6 +23,7 @@
         <activity android:name=".UploadImageActivity"></activity>
         <activity android:name=".TakePhotoActivity" />
         <activity android:name=".HistoryActivity"/>
+        <activity android:name=".AboutUsActivity"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>

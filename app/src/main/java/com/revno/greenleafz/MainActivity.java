@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finishAndRemoveTask();
+                        finishAffinity();
                     }
                 })
                 .setNegativeButton("No", null)
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void toAbout(View view){
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AboutUsActivity.class);
         startActivity(intent);
     }
 
