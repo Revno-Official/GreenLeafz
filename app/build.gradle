@@ -44,6 +44,9 @@ dependencies {
     implementation group: 'com.google.android.gms', name: 'play-services-vision-image-label', version: '18.1.0'
     implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.4'
     implementation 'org.tensorflow:tensorflow-lite:2.0.0'
+    implementation('org.tensorflow:tensorflow-lite-support:0.0.0-nightly'){changing = true}
+    implementation('org.tensorflow:tensorflow-lite:0.0.0-nightly'){changing = true}
+    implementation('org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'){changing=true}
 
 }
 
