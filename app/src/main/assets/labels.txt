@@ -1,201 +1,201 @@
-AlleghenyServiceberry
-AmericanAsh
-AmericanAspen
-AmericanBeech
-AmericanBladdernut
-AmericanChestnut
-AmericanElm
-AmericanHolly
-AmericanHophornbeam
-AmericanHornbeam
-AmericanPersimmon
-AmericanSweetgum
-AmericanSycamore
-AmurCorkTree
-AmurMaple
-AtlanticWhiteCedar
-AtlasCedar
-AustrianPine
-BaldCypress
+Allegheny Serviceberry
+American Ash
+American Aspen
+American Beech
+American Bladdernut
+American Chestnut
+American Elm
+American Holly
+American Hophornbeam
+American Hornbeam
+American Persimmon
+American Sweetgum
+American Sycamore
+Amur Cork Tree
+Amur Maple
+Atlantic White Cedar
+Atlas Cedar
+Austrian Pine
+Bald Cypress
 Basswood
 Bayleaf
-BigleafMagnolia
-BigtoothAspen
-BitterBerry
-BitternutHickory
-BlackAsh
-BlackCherry
-BlackjackOak
-BlackLocust
-BlackOak
-BlackPine
-BlackTupelo
-BlackWalnut
-BlackWillow
-BlueSpruce
-BoxelderMaple
-BurOak
+Bigleaf Magnolia
+Bigtooth Aspen
+Bitter Berry
+Bitternut Hickory
+Black Ash
+Black Cherry
+Blackjack Oak
+Black Locust
+Black Oak
+Black Pine
+Black Tupelo
+Black Walnut
+Black Willow
+Blue Spruce
+Boxelder Maple
+Bur Oak
 Butternut
-CalleyPear
-ChestnutOak
-ChineseCrabapple
-ChineseElm
-ChineseFringetree
-ChineseMahoghany
-ChineseWillow
-ChinkapinOak
-ClimbingBrinjal
-CoastalPlainWillow
-CockspurHawthorn
+Calley Pear
+Chestnut Oak
+Chinese Crabapple
+Chinese Elm
+Chinese Fringetree
+Chinese Mahoghany
+Chinese Willow
+Chinkapin Oak
+Climbing Brinjal
+Coastal Plain Willow
+Cockspur Hawthorn
 Coffee
-CommonFig
-CommonHoptree
-CommonLime
-CommonSilverbell
-CucumberTree
-DawnRedwood
-DeodarCedar
-DrownyServiceberry
-DuZhong 
-DwarfHackberry
-EastAsianCherry
-EasternCottonwood
-EasternHemlock
-EasternRedbud
-EasternWhitePine
-EmpressTree
-EnglishElm
-EnglishHawthorn
-EnglishOak
-EuropeanCornel
-EuropeanHornbeam
-EuropeanLarch
-FieldMaple 
-FireCherry
-FloweringDogwood
-FragrantSnowbell
-FrostedHawthorn 
-GoldenLarch
-GoldenRainTree
-GrayBirch
-GreenAsh
+Common Fig
+Common Hoptree
+Common Lime
+Common Silverbell
+Cucumber Tree
+Dawn Redwood
+Deodar Cedar
+Drowny Serviceberry
+Du Zhong
+Dwarf Hackberry
+East Asian Cherry
+Eastern Cottonwood
+Eastern Hemlock
+Eastern Redbud
+Eastern White Pine
+Empress Tree
+English Elm
+English Hawthorn
+English Oak
+European Cornel
+European Hornbeam
+European Larch
+Field Maple
+Fire Cherry
+Flowering Dogwood
+Fragrant Snowbell
+Frosted Hawthorn
+Golden Larch
+Golden Rain Tree
+Gray Birch
+Green Ash
 Hackberry
-HimalayanBirch
-HimalayanPine
-HoneyLocust
-HorseChestnut
-IndianBorage
-IndianPennywort
-IvyGourd
-JapaneseCedar
-JapaneseCrabapple
-JapaneseMaple
-JapaneseRedPine
-JapaneseSnowbell
-JapaneseStewartia
-JapaneseTreeLilac
-JapaneseWhitePine
-JapaneseZelkova
-Katsura 
-KentuckyCoffeeTree
-KentuckyYellowwood
-KhasiPine
-KoreanEvodia
-KoreanPine
-KousaDogwood
-LacebarkPine
-LebanonCedar
-LilyTree
-LimberPine
-LoblollyPine
-LondonPlane
-MaidenhairTree
+Himalayan Birch
+Himalayan Pine
+Honey Locust
+Horse Chestnut
+Indian Borage
+Indian Pennywort
+Ivy Gourd
+Japanese Cedar
+Japanese Crabapple
+Japanese Maple
+Japanese Red Pine
+Japanese Snowbell
+Japanese Stewartia
+Japanese Tree Lilac
+Japanese White Pine
+Japanese Zelkova
+Katsura
+Kentucky Coffee Tree
+Kentucky Yellow-wood
+Khasi Pine
+Korean Evodia
+Korean Pine
+Kousa Dogwood
+Lacebark Pine
+Lebanon Cedar
+Lily Tree
+Limber Pine
+Loblolly Pine
+London Plane
+Maidenhair Tree
 Mango
 Mint
-MockernutHickory
+Mockernut Hickory
 Moringa
-NordmannFir
-NorthernCatalpa
-NorthernRedOak
-NorwayMaple
-NorwaySpruce
-OhioBuckeye
-OrientalSpruce
-OsageOrange
+Nordmann Fir
+Northern Catalpa
+Northern Red Oak
+Norway Maple
+Norway Spruce
+Ohio Buckeye
+Oriental Spruce
+Osage Orange
 Papaya
-PaperbarkMaple
-PaperMulberry
-ParadiseApple
-PawPaw
-PersianSilkTree
-PignutHickory
-PitchPine
-PostOak
-RedBuckeye
-RedCedar
-RedMaple
-RedMulberry
-RedPine
-RiverBirch
-Sargent'sCherry
+Paperbark Maple
+Paper Mulberry
+Paradise Apple
+Paw-paw
+Persian Silk Tree
+Pignut Hickory
+Pitch Pine
+Post Oak
+Red Buckeye
+Red Cedar
+Red Maple
+Red Mulberry
+Red Pine
+River Birch
+Sargent's Cherry
 Sassafras
-SaucerMagnolia
-SawaraCypress
-SawtoothOak
-ScarletOak
-ScotsPine
-ShadblowServiceberry
-ShagbarkHickory
-ShingleOak
-ShortleafPine
-ShumardOak
-SiberianCrabapple
-SiberianElm
-SilverLinden
-SilverMaple
-SlipperyElm
-SmallLeavedLime
+Saucer Magnolia
+Sawara Cypress
+Sawtooth Oak
+Scarlet Oak
+Scots Pine
+Shadblow Servicebverry
+Shagbark Hickory
+Shingle Oak
+Shortleaf Pine
+Shumard Oak
+Siberian Crabapple
+Siberian Elm
+Silver Linden
+Silver Maple
+Slippery Elm
+Small Leaved Lime
 Sourwood
-SouthernCatalpa
-SouthernCrabapple
-SouthernLiveOak
-SouthernMagnolia
-SouthernRedOak
-SouthernThorn
+Southern Catalpa
+Southern Crabapple
+Southern Live Oak
+Southern Magnolia
+Southern Red Oak
+Southern Thorn
 Spinach
-StarMagnolia
-StripedMaple
-SugarMaple
-SwampBirch
-SwampChestnutOak
-SwampSpanishOak
-SwampWhiteOak
-SweetbayMagnolia
-SweetBirch
-SweetCrabapple
-SwissPine
-SycamoreMaple
-TableMountainPine
+Star Magnolia
+Striped Maple
+Sugar Maple
+Swamp Birch
+Swamp Chestnut Oak
+Swamp Spanish Oak
+Swamp White Oak
+Sweetbay Magnolia
+Sweet Birch
+Sweet Crabapple
+Swiss Pine
+Sycamore Maple
+Table Mountain Pine
 Tomato
-TulipTree
+Tulip Tree
 Tulsi
-TurkeyBerry
-TurkeyOak
-TurkishHazel
+Turkey Berry
+Turkey Oak
+Turkish Hazel
 Turmeric
-UmbrellaMagnolia
-VarnishTree
-VeldGrape
-VirginiaPine
-WashingtonHawthorn
-WaterOak
-WeepingWillow 
-WhiteFir 
-WhiteFringetree
-WhiteMulberry
-WhiteOak
-WillowOak
-WinterFloweringCherry
-WychElm
-YellowBuckeye
-YoshinoCherry
+Umbrella Magnolia
+Varnish Tree
+Veld Grape
+Virginia Pine
+Washington Hawthorn
+Water Oak
+Weeping Willow
+White Fir
+White Fringetree
+White Mulberry
+White Oak
+Willow Oak
+Winter Flowering Cherry
+Wych Elm
+Yellow Buckeye
+Yoshino Cherry
