@@ -31,7 +31,7 @@
         android:layout_margin="16dp"
         android:layout_gravity="bottom|right"
         app:fabSize="auto"
-        app:rippleColor="@android:color/holo_orange_light"
+        app:rippleColor="0b6623"
         app:backgroundTint="#6d4a3b"
         android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:tint="@color/cardview_light_background"
@@ -46,7 +46,7 @@
         android:layout_margin="16dp"
         android:onClick="uploadPhoto"
         app:fabSize="auto"
-        app:rippleColor="@android:color/holo_orange_light"
+        app:rippleColor="0b6623"
         android:text="gallery"
         app:backgroundTint="#6d4a3b"
         android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -59,7 +59,9 @@
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="16dp"
         android:id="@+id/classify"
+        app:rippleColor="0b6623"
         android:text="CLASSIFY"
+        app:backgroundTint="#A0522D"
         android:visibility="visible"
         />
 
@@ -69,9 +71,12 @@
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="16dp"
         android:id="@+id/know"
+        app:backgroundTint="#A0522D"
+        app:rippleColor="0b6623"
         android:text="know more"
         android:visibility="gone"
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
