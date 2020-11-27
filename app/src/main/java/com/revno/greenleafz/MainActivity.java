@@ -37,7 +37,6 @@ import org.tensorflow.lite.support.image.ops.ResizeOp;
 import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
