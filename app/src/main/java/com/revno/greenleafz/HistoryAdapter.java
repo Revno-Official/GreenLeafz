@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
@@ -27,12 +28,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
     }
 
-    public ArrayList<String> old_names = new ArrayList<>();
-    {
-        old_names.add("hui");
-        old_names.add("uhuhu");
-        old_names.add("revno");
-    }
+    public ArrayList<History> histories = new ArrayList<>();
 
     @NonNull
     @Override
@@ -45,13 +41,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     @Override
     public void onBindViewHolder(@NonNull HistoryAdapter.HistoryViewHolder holder, int position) {
-        String current = old_names.get(position);
+        History current = histories.get(position);
         holder.containerView.setTag(current);
-        holder.textView.setText(current);
+        holder.textView.setText(current.content);
     }
 
     @Override
     public int getItemCount() {
-        return old_names.size();
+        return histories.size();
+    }
+    public void reload(){
+        //histories = HistoryActivity.database.historyDao().getAll();
+        notifyDataSetChanged();
     }
 }

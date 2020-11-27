@@ -26,6 +26,8 @@ public class UploadImageActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("image/*");
         startActivityForResult(intent, 1);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
 
     @Override
@@ -41,6 +43,8 @@ public class UploadImageActivity extends AppCompatActivity {
                 parcelFileDescriptor.close();
                 imageView.setImageBitmap(imageBitmap);
                 finish();
+                overridePendingTransition(R.anim.slide_in_left,
+                        R.anim.slide_out_right);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -57,5 +61,7 @@ public class UploadImageActivity extends AppCompatActivity {
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left,
+                R.anim.slide_out_right);
     }
 }

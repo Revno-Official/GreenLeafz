@@ -39,6 +39,7 @@ dependencies {
     implementation "androidx.annotation:annotation:1.0.0"
     implementation "com.mikepenz:materialdrawer-nav:8.1.5"
     implementation "com.mikepenz:materialdrawer-iconics:8.1.5"
+    implementation "androidx.room:room-runtime:2.1.0"
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
     implementation group: 'com.google.android.gms', name: 'play-services-vision', version: '20.1.2'
     implementation group: 'com.google.android.gms', name: 'play-services-vision-image-label', version: '18.1.0'
@@ -48,5 +49,6 @@ dependencies {
     implementation('org.tensorflow:tensorflow-lite:0.0.0-nightly'){changing = true}
     implementation('org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'){changing=true}
 
+    annotationProcessor "androidx.room:room-compiler:2.1.0"
 }
 

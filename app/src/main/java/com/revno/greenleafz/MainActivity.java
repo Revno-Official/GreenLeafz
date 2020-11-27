@@ -1,21 +1,34 @@
 package com.revno.greenleafz;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.text.Layout;
+import android.util.Base64;
 import android.view.View;
 
 import android.widget.Button;
@@ -48,17 +61,23 @@ import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
 import org.tensorflow.lite.Interpreter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageCapture> extends AppCompatActivity {
     public static ImageView imageView;
     public static Bitmap imageBitmap;
     public FloatingActionButton photoButton;
@@ -67,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
     public TextView title;
     public Toolbar toolbar;
     public Button button;
+    public Button more;
+    public TextView textView;
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
@@ -90,7 +111,15 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.appbar);
         title = toolbar.findViewById(R.id.title);
         button = findViewById(R.id.classify);
+        textView = findViewById(R.id.tv);
+        more = findViewById(R.id.know);
         toolbar.setTitle("");
+
+        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
+        }
 
         new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
@@ -108,35 +137,54 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int imageTensorIndex = 0;
-                int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
-                imageSizeY = imageShape[1];
-                imageSizeX = imageShape[2];
-                DataType imageDataType = tflite.getInputTensor(imageTensorIndex).dataType();
+                if(imageView.getDrawable() != null){
+                    button.setVisibility(View.GONE);
+                    more.setVisibility(View.VISIBLE);
+                    int imageTensorIndex = 0;
+                    int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
+                    imageSizeY = imageShape[1];
+                    imageSizeX = imageShape[2];
+                    DataType imageDataType = tflite.getInputTensor(imageTensorIndex).dataType();
 
-                int probabilityTensorIndex = 0;
-                int[] probabilityShape =
-                        tflite.getOutputTensor(probabilityTensorIndex).shape(); // {1, NUM_CLASSES}
-                DataType probabilityDataType = tflite.getOutputTensor(probabilityTensorIndex).dataType();
+                    int probabilityTensorIndex = 0;
+                    int[] probabilityShape =
+                            tflite.getOutputTensor(probabilityTensorIndex).shape(); // {1, NUM_CLASSES}
+                    DataType probabilityDataType = tflite.getOutputTensor(probabilityTensorIndex).dataType();
 
-                inputImageBuffer = new TensorImage(imageDataType);
-                outputProbabilityBuffer = TensorBuffer.createFixedSize(probabilityShape, probabilityDataType);
-                probabilityProcessor = new TensorProcessor.Builder().add(getPostprocessNormalizeOp()).build();
+                    inputImageBuffer = new TensorImage(imageDataType);
+                    outputProbabilityBuffer = TensorBuffer.createFixedSize(probabilityShape, probabilityDataType);
+                    probabilityProcessor = new TensorProcessor.Builder().add(getPostprocessNormalizeOp()).build();
 
-                inputImageBuffer = loadImage(imageBitmap);
+                    inputImageBuffer = loadImage(imageBitmap);
 
-                tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
-                showresult();
+                    tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
+                    showresult();
+                }
             }
         });
 
-
-
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = textView.getText().toString();
+                String term = name + " plant";
+                Intent browserIntent = new Intent(Intent.ACTION_WEB_SEARCH);
+                browserIntent.putExtra(SearchManager.QUERY, term);
+                startActivity(browserIntent);
+                overridePendingTransition(R.anim.slide_in_right,
+                        R.anim.slide_out_left);
+            }
+        });
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
-        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("saved_model.tflite");
+        AssetFileDescriptor fileDescriptor=activity.getAssets().openFd("model_0_2.tflite");
         FileInputStream inputStream=new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel=inputStream.getChannel();
         long startoffset = fileDescriptor.getStartOffset();
@@ -150,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Creates processor for the TensorImage.
         int cropSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
-        // todo(b/143564309): Fuse ops inside ImageProcessor.
+        // td(b/143564309): Fuse ops inside ImageProcessor.
         ImageProcessor imageProcessor =
                 new ImageProcessor.Builder()
                         .add(new ResizeWithCropOrPadOp(cropSize, cropSize))
@@ -181,22 +229,28 @@ public class MainActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
             if (entry.getValue()==maxValueInMap) {
-                button.setText(entry.getKey());
+                textView.setText(entry.getKey());
             }
         }
     }
 
 
     public void takePhoto(View view) {
-        Context context = view.getContext();
-        Intent intent = new Intent(context, TakePhotoActivity.class);
-        context.startActivity(intent);
+        dispatchTakePictureIntent();
+        button.setVisibility(View.VISIBLE);
+        more.setVisibility(View.GONE);
+        textView.setText("");
     }
 
     public void uploadPhoto(View view) {
         Context context = view.getContext();
         Intent intent = new Intent(context, UploadImageActivity.class);
         context.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
+        textView.setText("");
+        button.setVisibility(View.VISIBLE);
+        more.setVisibility(View.GONE);
     }
 
     @Override
@@ -217,105 +271,60 @@ public class MainActivity extends AppCompatActivity {
         if (!this.getClass().getSimpleName().toLowerCase().startsWith("main")){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right,
+                    R.anim.slide_out_left);
         }
     }
     public void toTutorial(View view){
         Intent intent = new Intent(getApplicationContext(),TutorialActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
     public void toHistory(View view){
         Intent intent = new Intent(getApplicationContext(),HistoryActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
     public void toAbout(View view){
         Intent intent = new Intent(getApplicationContext(),AboutUsActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            overridePendingTransition(R.anim.slide_in_right,
+                    R.anim.slide_out_left);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        overridePendingTransition(R.anim.slide_in_left,
+                R.anim.slide_out_right);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
 
     /*public static void toBase64() {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         encoded = Base64.encodeToString(byteArray, Base64.NO_WRAP);
-        Log.i("REVNO",encoded);*/
-        //encoded = ImageUtil.convert(imageBitmap);
-        //Log.i("REVNO",encoded);
-        //imageView.setImageBitmap(ImageUtil.convert(encoded));}
+        Log.i("REVNO",encoded);
+    }
 
     /*public void send(){
         BackgroundMail bm = new BackgroundMail(MainActivity.this);
@@ -340,6 +349,5 @@ public class MainActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
-    }
-    */
+    }*/
 }

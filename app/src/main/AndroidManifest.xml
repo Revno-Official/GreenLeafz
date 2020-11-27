@@ -20,13 +20,21 @@
         android:roundIcon="@mipmap/huicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UploadImageActivity"></activity>
-        <activity android:name=".TakePhotoActivity" />
-        <activity android:name=".HistoryActivity"/>
-        <activity android:name=".AboutUsActivity"/>
-        <activity android:name=".TutorialActivity"/>
-
-        <activity android:name=".MainActivity">
+        <activity android:name=".UploadImageActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HistoryActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AboutUsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TutorialActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

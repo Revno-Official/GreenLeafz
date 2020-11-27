@@ -17,6 +17,8 @@
         android:id="@+id/camera"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="125dp"
+        android:layout_marginBottom="85dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/app_name" />
 
@@ -58,6 +60,27 @@
         android:layout_marginBottom="16dp"
         android:id="@+id/classify"
         android:text="CLASSIFY"
+        android:visibility="visible"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/know"
+        android:text="know more"
+        android:visibility="gone"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select an image"
+        android:id="@+id/tv"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/huifont"
+        android:textSize="50sp"
+        android:textColor="#A0522D"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

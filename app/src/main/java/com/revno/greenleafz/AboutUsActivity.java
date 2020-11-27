@@ -34,24 +34,34 @@ public class AboutUsActivity extends AppCompatActivity {
     public void toHome(View view){
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
     public void toTutorial(View view){
         Intent intent = new Intent(getApplicationContext(),TutorialActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
     public void toHistory(View view){
         Intent intent = new Intent(getApplicationContext(),HistoryActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
     public void toAbout(View view){
         if (!this.getClass().getSimpleName().toLowerCase().startsWith("about")) {
             Intent intent = new Intent(getApplicationContext(),AboutUsActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right,
+                    R.anim.slide_out_left);
         }
     }
 
     @Override
     public void onBackPressed() {
         this.finish();
+        overridePendingTransition(R.anim.slide_in_left,
+                R.anim.slide_out_right);
     }
 }
