@@ -201,8 +201,14 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         float maxValueInMap =(Collections.max(labeledProbability.values()));
 
         for (Map.Entry<String, Float> entry : labeledProbability.entrySet()) {
-            if (entry.getValue()==maxValueInMap) {
-                textView.setText(entry.getKey());
+            if (entry.getValue() == maxValueInMap) {
+                if (maxValueInMap >= 0.02) {
+                    String valu = String.format(entry.getKey() + " " + maxValueInMap);
+                    textView.setText(valu);
+                } else {
+                    String val = String.format("Please upload a better image " + maxValueInMap);
+                    textView.setText(val);
+                }
             }
         }
     }

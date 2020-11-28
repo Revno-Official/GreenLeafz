@@ -84,8 +84,8 @@
         android:id="@+id/tv"
         android:layout_marginTop="60dp"
         android:layout_gravity="center_horizontal"
-        android:fontFamily="@font/huifont"
-        android:textSize="50sp"
+        android:fontFamily="sans-serif-black"
+        android:textSize="20sp"
         android:textColor="#A0522D"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
