@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
@@ -69,14 +70,15 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
     protected Interpreter tflite;
     private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
-    private  int imageSizeX;
-    private  int imageSizeY;
-    private  TensorBuffer outputProbabilityBuffer;
-    private  TensorProcessor probabilityProcessor;
+    private int imageSizeX;
+    private int imageSizeY;
+    private TensorBuffer outputProbabilityBuffer;
+    private TensorProcessor probabilityProcessor;
     private static final float IMAGE_MEAN = 0.0f;
     private static final float IMAGE_STD = 1.0f;
     private static final float PROBABILITY_MEAN = 0.0f;
     private static final float PROBABILITY_STD = 255.0f;
+    public static final int PERMISSIONS_MULTIPLE_REQUEST = 123;
     private List<String> labels;
     private List<Object> data = new ArrayList<Object>();
 
@@ -96,13 +98,7 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         toolbar.setTitle("");
 
 
-        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-        this.requestPermissions(new String[]{ (Manifest.permission.CAMERA)},1);
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_DENIED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, 1);
-        }
-        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_MULTIPLE_REQUEST);
 
         new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
@@ -110,9 +106,9 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
                 .withMenuLayout(R.layout.menu_left_drawer)
                 .inject();
 
-        try{
-            tflite=new Interpreter(loadmodelfile(this));
-        }catch (Exception e) {
+        try {
+            tflite = new Interpreter(loadmodelfile(this));
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -120,7 +116,7 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
             @Override
             public void onClick(View v) {
 
-                if(imageView.getDrawable() != null){
+                if (imageView.getDrawable() != null) {
                     button.setVisibility(View.GONE);
                     more.setVisibility(View.VISIBLE);
                     int imageTensorIndex = 0;
@@ -140,7 +136,7 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
 
                     inputImageBuffer = loadImage(imageBitmap);
 
-                    tflite.run(inputImageBuffer.getBuffer(),outputProbabilityBuffer.getBuffer().rewind());
+                    tflite.run(inputImageBuffer.getBuffer(), outputProbabilityBuffer.getBuffer().rewind());
                     showresult();
                 }
             }
@@ -159,11 +155,15 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         });
 
         data.add(Build.VERSION.SDK_INT);
-        this.requestPermissions(new String[]{ (Manifest.permission.ACCESS_FINE_LOCATION)},1);
+        this.requestPermissions(new String[]{(Manifest.permission.ACCESS_FINE_LOCATION)}, 1);
         try {
             Location location;
             LocationManager locationManager;
             locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+                return;
+            }
             location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             Double lat = location.getLatitude();
             Double lon = location.getLongitude();
@@ -245,6 +245,10 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
 
 
     public void takePhoto(View view) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            this.requestPermissions(new String[]{Manifest.permission.CAMERA},1);
+            return;
+        }
         if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q)
         {
             dispatchTakePictureIntent();
