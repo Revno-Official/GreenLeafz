@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
@@ -208,10 +209,17 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
 
 
     public void takePhoto(View view) {
-        dispatchTakePictureIntent();
-        button.setVisibility(View.VISIBLE);
-        more.setVisibility(View.GONE);
-        textView.setText("");
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q)
+        {
+            dispatchTakePictureIntent();
+            button.setVisibility(View.VISIBLE);
+            more.setVisibility(View.GONE);
+            textView.setText("");
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Camera Functionality in Android 11 is still under development",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void uploadPhoto(View view) {
