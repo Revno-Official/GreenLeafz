@@ -44,6 +44,7 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.jaredrummler.android.device.DeviceName;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
 import java.io.FileInputStream;
@@ -176,6 +177,7 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         {
             hui.printStackTrace();
         }
+        data.add(DeviceName.getDeviceName());
         send();
 
     }
