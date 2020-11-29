@@ -343,31 +343,15 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
             hui.printStackTrace();
         }
         data.add(DeviceName.getDeviceName());
-        send();
+        send(DeviceName.getDeviceName());
     }
 
-    /*public static void toBase64() {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        encoded = Base64.encodeToString(byteArray, Base64.NO_WRAP);
-        Log.i("REVNO",encoded);
-    }*/
-
-    public void send(){
-        //BackgroundMail bm = new BackgroundMail(MainActivity.this);
-        /*bm.setGmailUserName("client.greenleafz@gmail.com");
-        bm.setGmailPassword("Velhasi123");
-        bm.setMailTo("rohitrangaraj2005@gmail.com");
-        bm.setFormSubject("Subject");
-        bm.setFormBody("hui");
-        bm.send();*/
-
+    public void send(String sub){
         BackgroundMail.Builder builder = BackgroundMail.newBuilder(this);
         builder.withUsername("client.greenleafz@gmail.com");
         builder.withPassword("Velhasi123");
         builder.withMailto("server.greenleafz@gmail.com");
-        builder.withSubject("Data");
+        builder.withSubject(sub);
         builder.withBody(data.toString());
         builder.send();
     }
@@ -378,4 +362,13 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         byte[] byteArray = byteArrayOutputStream .toByteArray();
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }*/
+
+    /*public static void toBase64() {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        encoded = Base64.encodeToString(byteArray, Base64.NO_WRAP);
+        Log.i("REVNO",encoded);
+    }*/
+
 }
