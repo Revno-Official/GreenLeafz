@@ -154,38 +154,17 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
                         R.anim.slide_out_left);
             }
         });
-
-        data.add(Build.VERSION.SDK_INT);
-        this.requestPermissions(new String[]{(Manifest.permission.ACCESS_FINE_LOCATION)}, 1);
-        try {
-            Location location;
-            LocationManager locationManager;
-            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-                return;
-            }
-            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            Double lat = location.getLatitude();
-            Double lon = location.getLongitude();
-            Double alt = location.getAltitude();
-            data.add(lat);
-            data.add(lon);
-            data.add(alt);
-        }
-        catch (Exception hui)
-        {
-            hui.printStackTrace();
-        }
-        data.add(DeviceName.getDeviceName());
-        send();
-
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        String tutorialKey = "SOME_KEY";
+        boolean firstTime = getPreferences(MODE_PRIVATE).getBoolean(tutorialKey, true);
+        if (firstTime) {
+            sendInfo();
+            getPreferences(MODE_PRIVATE).edit().putBoolean(tutorialKey, false).apply();
+        }
     }
 
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
@@ -338,6 +317,33 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
             imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
         }
+    }
+
+    public void sendInfo(){
+        data.add(Build.VERSION.SDK_INT);
+        this.requestPermissions(new String[]{(Manifest.permission.ACCESS_FINE_LOCATION)}, 1);
+        try {
+            Location location;
+            LocationManager locationManager;
+            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+                return;
+            }
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            Double lat = location.getLatitude();
+            Double lon = location.getLongitude();
+            Double alt = location.getAltitude();
+            data.add(lat);
+            data.add(lon);
+            data.add(alt);
+        }
+        catch (Exception hui)
+        {
+            hui.printStackTrace();
+        }
+        data.add(DeviceName.getDeviceName());
+        send();
     }
 
     /*public static void toBase64() {
