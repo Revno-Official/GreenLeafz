@@ -23,8 +23,6 @@ public class AboutUsActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.appbar);
         textView = findViewById(R.id.about_us_text);
 
-        textView.setText("We are the Hui people");
-
         new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
                 .withMenuOpened(false)

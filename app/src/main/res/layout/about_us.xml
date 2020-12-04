@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:background="#D5D8B1">
 
     <include
         android:id="@+id/appbar"
@@ -13,8 +13,9 @@
         android:id="@+id/about_us_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"/>
+        android:layout_gravity="bottom"
+        android:text="Contact us : info.revno@gmail.com"
+        android:textSize="25dp"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
