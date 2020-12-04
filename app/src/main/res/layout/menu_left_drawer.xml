@@ -25,10 +25,10 @@
             android:drawableLeft="@drawable/home_24"
             android:onClick="toHome"
             android:text="HOME"
-            android:fontFamily="@font/bluecobraboldexpand"
+            android:fontFamily="sans-serif-black"
             android:drawablePadding="2dp"
             android:textColor="#332211"
-            android:textSize="60sp"
+            android:textSize="34sp"
             android:paddingBottom="2dp"
             android:shadowColor="#228B22"
             android:shadowRadius="10"/>
@@ -44,11 +44,11 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
             android:drawableLeft="@drawable/ic_video"
-            android:fontFamily="@font/bluecobraboldexpand"
+            android:fontFamily="sans-serif-black"
             android:onClick="toTutorial"
             android:text="TUTORIAL"
             android:textColor="#332211"
-            android:textSize="60sp"
+            android:textSize="34sp"
             android:drawablePadding="2dp"
             android:paddingBottom="2dp"
             android:shadowColor="#228B22"
@@ -87,14 +87,14 @@
             android:backgroundTint="@color/colorPrimary"
             android:drawableLeft="@drawable/ic_information_button"
             android:drawablePadding="2dp"
-            android:fontFamily="@font/bluecobraboldexpand"
+            android:fontFamily="sans-serif-black"
             android:onClick="toAbout"
             android:paddingBottom="2dp"
             android:shadowColor="#228B22"
             android:shadowRadius="10"
             android:text="ABOUT US"
             android:textColor="#332211"
-            android:textSize="60sp" />
+            android:textSize="34sp" />
     </LinearLayout>
 
 </RelativeLayout>
