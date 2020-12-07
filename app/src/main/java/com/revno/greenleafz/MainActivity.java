@@ -154,10 +154,6 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
                     overridePendingTransition(R.anim.slide_in_right,
                             R.anim.slide_out_left);
                 }
-                else{
-                    button.setVisibility(View.GONE);
-                    more.setVisibility(View.GONE);
-                }
 
             }
         });
