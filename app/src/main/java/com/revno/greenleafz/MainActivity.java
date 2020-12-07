@@ -147,11 +147,18 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
             @Override
             public void onClick(View view) {
                 String name = textView.getText().toString();
-                Intent browserIntent = new Intent(Intent.ACTION_WEB_SEARCH);
-                browserIntent.putExtra(SearchManager.QUERY, name);
-                startActivity(browserIntent);
-                overridePendingTransition(R.anim.slide_in_right,
-                        R.anim.slide_out_left);
+                if (!name.startsWith("Please")){
+                    Intent browserIntent = new Intent(Intent.ACTION_WEB_SEARCH);
+                    browserIntent.putExtra(SearchManager.QUERY, name);
+                    startActivity(browserIntent);
+                    overridePendingTransition(R.anim.slide_in_right,
+                            R.anim.slide_out_left);
+                }
+                else{
+                    button.setVisibility(View.GONE);
+                    more.setVisibility(View.GONE);
+                }
+
             }
         });
     }
