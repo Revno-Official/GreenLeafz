@@ -99,7 +99,7 @@ public class MainActivity<ActivityResultLauncher, ActivityResultCallback, ImageC
         toolbar.setTitle("");
 
 
-        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_MULTIPLE_REQUEST);
+        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE}, PERMISSIONS_MULTIPLE_REQUEST);
 
         new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)
