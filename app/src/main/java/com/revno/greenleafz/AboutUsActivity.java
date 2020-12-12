@@ -1,27 +1,30 @@
 package com.revno.greenleafz;
 
 import android.content.Intent;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
+import mehdi.sakout.aboutpage.AboutPage;
+
 public class AboutUsActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_us);
-
         toolbar = findViewById(R.id.appbar);
-        textView = findViewById(R.id.about_us_text);
 
         new SlidingRootNavBuilder(this)
                 .withToolbarMenuToggle(toolbar)

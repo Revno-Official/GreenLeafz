@@ -6,4 +6,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="content">TWO super ENTHUSIASTIC fifteen-year-olds during the PANDEMIC who had a lot of time in their hands, decided to pursue their interest in CS. They have now developed that interest into something bigger.
+GreenLeafz is a LEAF CLASSIFIER designed to sort plants with just a picture of its leaves.
+It is written in a PYTHON package called TENSORFLOW and brought to you in the form of an ANDROID App we developed in JAVA.</string>
 </resources>
