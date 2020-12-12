@@ -1,6 +1,7 @@
 package com.revno.greenleafz;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,6 +27,13 @@ public class TutorialActivity extends AppCompatActivity {
                 .withMenuOpened(false)
                 .withMenuLayout(R.layout.menu_left_drawer)
                 .inject();
+    }
+
+    public void open(View v)
+    {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=K4hVane2xjg&t=4s")));
+        overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
     }
 
     public void toHome(View view){
