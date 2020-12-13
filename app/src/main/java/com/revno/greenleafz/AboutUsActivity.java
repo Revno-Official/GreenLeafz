@@ -109,7 +109,8 @@ public class AboutUsActivity extends AppCompatActivity {
     {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL,"info.revno@gmail.com");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL,new String[]{"info.revno@gmail.com"});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "GreenLeafz Query");
         startActivity(emailIntent);
         overridePendingTransition(R.anim.slide_in_right,
                 R.anim.slide_out_left);
