@@ -1,7 +1,4 @@
 # GreenLeafz
-The Leaf Classifier
-
-GreenLeafz - The Leaf Classifier
 
 GreenLeafz is a Leaf Classifier which is the final project submission for CS50X by Rohit R and Venuskanda S.
 
