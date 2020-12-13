@@ -61,8 +61,6 @@
         android:id="@+id/classify"
         app:rippleColor="#0b6623"
         android:text="CLASSIFY"
-        android:fontFamily="@font/csk"
-        android:textSize="20sp"
         app:backgroundTint="#A0522D"
         android:visibility="visible"
         />
@@ -75,8 +73,6 @@
         android:id="@+id/know"
         app:backgroundTint="#A0522D"
         app:rippleColor="#0b6623"
-        android:fontFamily="@font/csk"
-        android:textSize="20sp"
         android:text="know more"
         android:visibility="gone"
         />
